@@ -1,16 +1,3 @@
-/**
- * @file tvregopt.h
- * @brief tvreg options handling and internal definitions
- * @author Pascal Getreuer <getreuer@gmail.com>
- * 
- * Copyright (c) 2010-2012, Pascal Getreuer
- * All rights reserved.
- * 
- * This program is free software: you can use, modify and/or 
- * redistribute it under the terms of the simplified BSD License. You 
- * should have received a copy of this license along this program. If 
- * not, see <http://www.opensource.org/licenses/bsd-license.html>.
- */
 #ifndef _TVREGOPT_H_
 #define _TVREGOPT_H_
 
@@ -211,18 +198,6 @@ void TvRegFreeOpt(tvregopt *Opt)
 }
 
 
-/** 
- * @brief Specify fidelity weight lambda 
- * @param Opt tvregopt options object
- * @param Lambda fidelity weight (positive scalar)
- */
-void TvRegSetLambda(tvregopt *Opt, num Lambda)
-{
-    if(Opt)
-        Opt->Lambda = Lambda;
-}
-
-
 /**
  * @brief Specify spatially varying fidelity weight
  * @param Opt tvregopt options object
@@ -276,54 +251,6 @@ void TvRegSetKernel(tvregopt *Opt,
         Opt->KernelWidth = KernelWidth;
         Opt->KernelHeight = KernelHeight;
     }
-}
-
-
-/** 
- * @brief Specify convergence tolerance 
- * @param Opt tvregopt options object
- * @param Tol convergence tolerance (positive scalar)
- */
-void TvRegSetTol(tvregopt *Opt, num Tol)
-{
-    if(Opt)
-        Opt->Tol = Tol;
-}
-
-
-/** 
- * @brief Specify d = grad u penalty weight
- * @param Opt tvregopt options object
- * @param Gamma1 penalty (positive scalar)
- */
-void TvRegSetGamma1(tvregopt *Opt, num Gamma1)
-{
-    if(Opt)
-        Opt->Gamma1 = Gamma1;
-}
-
-
-/** 
- * @brief Specify z = Ku constraint weight
- * @param Opt tvregopt options object
- * @param Gamma1 penalty (positive scalar)
- */
-void TvRegSetGamma2(tvregopt *Opt, num Gamma2)
-{
-    if(Opt)
-        Opt->Gamma2 = Gamma2;
-}
-
-
-/** 
- * @brief Specify the maximum number of iterations 
- * @param Opt tvregopt options object
- * @param MaxIter maximum number of iterations
- */
-void TvRegSetMaxIter(tvregopt *Opt, int MaxIter)
-{
-    if(Opt)
-        Opt->MaxIter = MaxIter;
 }
 
 

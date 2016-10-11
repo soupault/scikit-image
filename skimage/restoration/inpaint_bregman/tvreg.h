@@ -1,21 +1,5 @@
-/**
- * @file tvreg.h
- * @brief TV-regularized image restoration
- * @author Pascal Getreuer <getreuer@gmail.com>
- * 
- * Copyright (c) 2010-2012, Pascal Getreuer
- * All rights reserved.
- * 
- * This program is free software: you can use, modify and/or 
- * redistribute it under the terms of the simplified BSD License. You 
- * should have received a copy of this license along this program. If 
- * not, see <http://www.opensource.org/licenses/bsd-license.html>.
- */
 #ifndef _TVREG_H_
 #define _TVREG_H_
-
-#include "basic.h"
-#include "num.h"
 
 /** @brief Default fidelity weight */
 #define TVREGOPT_DEFAULT_LAMBDA         25
