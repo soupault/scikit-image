@@ -18,7 +18,7 @@ if [[ $TRAVIS_OS_NAME == "osx" ]]; then
 fi
 
 section "Test.with.min.requirements"
-nosetests $TEST_ARGS skimage
+nose2 $TEST_ARGS
 section_end "Test.with.min.requirements"
 
 section "Build.docs"
@@ -114,7 +114,7 @@ section "Test.with.optional.dependencies"
 if [[ $OPTIONAL_DEPS == 1 ]]; then
     TEST_ARGS="$TEST_ARGS --with-cov --cover-package skimage"
 fi
-nosetests $TEST_ARGS
+nose2 $TEST_ARGS
 
 section_end "Test.with.optional.dependencies"
 

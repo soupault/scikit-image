@@ -13,8 +13,7 @@ fi
 
 export DISPLAY=:99.0
 export PYTHONWARNINGS="d,all:::skimage"
-export TEST_ARGS="--exe --ignore-files=^_test -v --with-doctest \
-                  --ignore-files=^setup.py$"
+export TEST_ARGS="--config nose2_config.cfg --verbose"
 WHEELBINARIES="matplotlib scipy pillow cython"
 
 retry () {
@@ -47,7 +46,7 @@ virtualenv -p python ~/venv
 source ~/venv/bin/activate
 
 pip install --upgrade pip
-pip install --retries 3 -q wheel flake8 codecov nose
+pip install --retries 3 -q wheel flake8 codecov nose2
 # install numpy from PyPI instead of our wheelhouse
 pip install --retries 3 -q wheel numpy
 

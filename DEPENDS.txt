@@ -16,7 +16,7 @@ Runtime requirements
 * `NetworkX >= 1.8 <https://networkx.github.io>`__
 * `Six >=1.4 <https://pypi.python.org/pypi/six>`__
 * `Pillow >= 1.7.8 <https://pypi.python.org/pypi/Pillow>`__
-    (or `PIL <http://www.pythonware.com/products/pil/>`__)
+  (or `PIL <http://www.pythonware.com/products/pil/>`__)
 * `PyWavelets>=0.4.0 <https://pypi.python.org/pypi/PyWavelets/>`__
 
 You can use pip to automatically install the runtime dependencies as follows::
@@ -51,17 +51,14 @@ functionality is only available with the following installed:
 * `imread <http://pythonhosted.org/imread/>`__
   Optional io plugin providing most standard `formats <http://pythonhosted.org//imread/formats.html>`__.
 
-
 Testing requirements
 --------------------
-* `Nose <https://nose.readthedocs.org/en/latest/>`__
-      A Python Unit Testing Framework
+* `Nose2 <https://nose2.readthedocs.org/en/latest/>`__
+  A Python Unit Testing Framework.
 * `Coverage.py <http://nedbatchelder.com/code/coverage/>`__
-      A tool that generates a unit test code coverage report
-
+  A tool that generates a unit test code coverage report.
 
 Documentation requirements
 --------------------------
-
-`sphinx >= 1.3 <http://sphinx-doc.org/>`_ is required to build the
-documentation.
+* `sphinx >= 1.3 <http://sphinx-doc.org/>`_
+  Required to build the documentation.
