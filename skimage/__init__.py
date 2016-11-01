@@ -73,19 +73,19 @@ __version__ = '0.13dev'
 try:
     imp.find_module('nose2')
 except ImportError:
-    def _test(doctest=False, verbose=False):
+    def _test(doctest=False, verbose=True):
         """This would run all unit tests, but nose couldn't be
         imported so the test suite can not run.
         """
         raise ImportError("Could not load nose2. Unit tests are not available.")
 else:
-    def _test(doctest=False, verbose=False):
+    def _test(doctest=False, verbose=True):
         """Run all unit tests."""
         import nose2
         import warnings
-        args = ['', pkg_dir]
+        args = [pkg_dir]
         if verbose:
-            args.extend(['--verbose', '-s'])
+            args.extend(['--verbose'])
         if doctest:
             args.extend(['--with-doctest'])
             # Make sure warnings do not break the doc tests
@@ -127,16 +127,17 @@ http://scikit-image.org/docs/stable/install.html """
 
 
 def _raise_build_error(e):
-    # Raise a comprehensible error
     local_dir = os.path.split(__file__)[0]
-    msg = _STANDARD_MSG
     if local_dir == "skimage":
         # Picking up the local install: this will work only if the
         # install is an 'inplace build'
         msg = _INPLACE_MSG
-    raise ImportError("""%s
-It seems that scikit-image has not been built correctly.
-%s""" % (e, msg))
+    else:
+        msg = _STANDARD_MSG
+    err_msg = ("{}\n\n"
+               "It seems that scikit-image has not been built correctly.\n"
+               "{}".format(e, msg))
+    raise ImportError(err_msg)
 
 try:
     # This variable is injected in the __builtins__ by the build
@@ -145,6 +146,7 @@ try:
     __SKIMAGE_SETUP__
 except NameError:
     __SKIMAGE_SETUP__ = False
+
 
 if __SKIMAGE_SETUP__:
     sys.stderr.write('Partial import of skimage during the build process.\n')
