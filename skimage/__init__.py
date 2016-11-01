@@ -70,46 +70,46 @@ __version__ = '0.13dev'
 
 # XXX: review this file
 
-try:
-    imp.find_module('nose2')
-except ImportError:
-    def _test(doctest=False, verbose=True):
-        """This would run all unit tests, but nose couldn't be
-        imported so the test suite can not run.
-        """
-        raise ImportError("Could not load nose2. Unit tests are not available.")
-else:
-    def _test(doctest=False, verbose=True):
-        """Run all unit tests."""
-        import nose2
-        import warnings
-        args = ['-s', pkg_dir]
-        if verbose:
-            args.extend(['--verbose'])
-        if doctest:
-            args.extend(['--with-doctest'])
-            # Make sure warnings do not break the doc tests
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                success = nose2.run('skimage', argv=args)
-        else:
-            success = nose2.run('skimage', argv=args)
-        # Return sys.exit code
-        if success:
-            return 0
-        else:
-            return 1
+# try:
+#     imp.find_module('nose2')
+# except ImportError:
+#     def _test(doctest=False, verbose=True):
+#         """This would run all unit tests, but nose couldn't be
+#         imported so the test suite can not run.
+#         """
+#         raise ImportError("Could not load nose2. Unit tests are not available.")
+# else:
+#     def _test(doctest=False, verbose=True):
+#         """Run all unit tests."""
+#         import nose2
+#         import warnings
+#         args = ['-s', pkg_dir]
+#         if verbose:
+#             args.extend(['--verbose'])
+#         if doctest:
+#             args.extend(['--with-doctest'])
+#             # Make sure warnings do not break the doc tests
+#             with warnings.catch_warnings():
+#                 warnings.simplefilter("ignore")
+#                 success = nose2.run('skimage', argv=args)
+#         else:
+#             success = nose2.run('skimage', argv=args)
+#         # Return sys.exit code
+#         if success:
+#             return 0
+#         else:
+#             return 1
 
 
 # do not use `test` as function name as this leads to a recursion problem with
 # the nose test suite
-test = _test
-test_verbose = functools.partial(test, verbose=True)
-test_verbose.__doc__ = test.__doc__
-doctest = functools.partial(test, doctest=True)
-doctest.__doc__ = doctest.__doc__
-doctest_verbose = functools.partial(test, doctest=True, verbose=True)
-doctest_verbose.__doc__ = doctest.__doc__
+# test = _test
+# test_verbose = functools.partial(test, verbose=True)
+# test_verbose.__doc__ = test.__doc__
+# doctest = functools.partial(test, doctest=True)
+# doctest.__doc__ = doctest.__doc__
+# doctest_verbose = functools.partial(test, doctest=True, verbose=True)
+# doctest_verbose.__doc__ = doctest.__doc__
 
 
 # Logic for checking for improper install and importing while in the source
@@ -157,7 +157,8 @@ else:
         from ._shared import geometry
         del geometry
     except ImportError as e:
-        _raise_build_error(e)
+        pass
+        # _raise_build_error(e)
     from .util.dtype import *
 
 
