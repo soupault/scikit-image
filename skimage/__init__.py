@@ -83,7 +83,7 @@ else:
         """Run all unit tests."""
         import nose2
         import warnings
-        args = [pkg_dir]
+        args = ['-s', pkg_dir]
         if verbose:
             args.extend(['--verbose'])
         if doctest:
