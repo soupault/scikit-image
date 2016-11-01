@@ -56,48 +56,52 @@ img_as_ubyte
 
 """
 
-import os.path as osp
+import os.path
 import imp
 import functools
 import warnings
 import sys
 
-pkg_dir = osp.abspath(osp.dirname(__file__))
-data_dir = osp.join(pkg_dir, 'data')
+pkg_dir = os.path.abspath(os.path.dirname(__file__))
+data_dir = os.path.join(pkg_dir, 'data')
 
 __version__ = '0.13dev'
 
-try:
-    imp.find_module('nose')
-except ImportError:
-    def _test(doctest=False, verbose=False):
-        """This would run all unit tests, but nose couldn't be
-        imported so the test suite can not run.
-        """
-        raise ImportError("Could not load nose. Unit tests not available.")
 
-else:
-    def _test(doctest=False, verbose=False):
-        """Run all unit tests."""
-        import nose
-        import warnings
-        args = ['', pkg_dir, '--exe', '--ignore-files=^_test']
-        if verbose:
-            args.extend(['-v', '-s'])
-        if doctest:
-            args.extend(['--with-doctest', '--ignore-files=^\.',
-                         '--ignore-files=^setup\.py$$', '--ignore-files=test'])
-            # Make sure warnings do not break the doc tests
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                success = nose.run('skimage', argv=args)
-        else:
-            success = nose.run('skimage', argv=args)
-        # Return sys.exit code
-        if success:
-            return 0
-        else:
-            return 1
+def _test(*args, **kwargs):
+    # XXX: review this file
+    pass
+
+# try:
+#     imp.find_module('nose2')
+# except ImportError:
+#     def _test(doctest=False, verbose=False):
+#         """This would run all unit tests, but nose couldn't be
+#         imported so the test suite can not run.
+#         """
+#         raise ImportError("Could not load nose2. Unit tests are not available.")
+# else:
+#     def _test(doctest=False, verbose=False):
+#         """Run all unit tests."""
+#         import nose2
+#         import warnings
+#         args = ['', pkg_dir, '--exe', '--ignore-files=^_test']
+#         if verbose:
+#             args.extend(['-v', '-s'])
+#         if doctest:
+#             args.extend(['--with-doctest', '--ignore-files=^\.',
+#                          '--ignore-files=^setup\.py$$', '--ignore-files=test'])
+#             # Make sure warnings do not break the doc tests
+#             with warnings.catch_warnings():
+#                 warnings.simplefilter("ignore")
+#                 success = nose2.run('skimage', argv=args)
+#         else:
+#             success = nose2.run('skimage', argv=args)
+#         # Return sys.exit code
+#         if success:
+#             return 0
+#         else:
+#             return 1
 
 
 # do not use `test` as function name as this leads to a recursion problem with
@@ -127,7 +131,7 @@ http://scikit-image.org/docs/stable/install.html """
 
 def _raise_build_error(e):
     # Raise a comprehensible error
-    local_dir = osp.split(__file__)[0]
+    local_dir = os.path.split(__file__)[0]
     msg = _STANDARD_MSG
     if local_dir == "skimage":
         # Picking up the local install: this will work only if the
@@ -158,4 +162,4 @@ else:
     from .util.dtype import *
 
 
-del warnings, functools, osp, imp, sys
+del warnings, functools, os.path, imp, sys

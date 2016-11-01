@@ -2,7 +2,7 @@
 """
 
 import numpy as np
-from nose.tools import (assert_true, assert_raises, assert_equal)
+from nose2.tools import (assert_true, assert_raises, assert_equal)
 from skimage._shared.testing import doctest_skip_parser, test_parallel
 
 

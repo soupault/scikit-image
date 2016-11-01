@@ -1,16 +1,15 @@
 """Testing utilities."""
 
-
 import os
 import re
 import threading
 import functools
+import warnings
 from tempfile import NamedTemporaryFile
 
-from numpy import testing
 import numpy as np
+from numpy import testing
 from ._warnings import expected_warnings
-import warnings
 
 from .. import data, io, img_as_uint, img_as_float, img_as_int, img_as_ubyte
 
@@ -33,12 +32,12 @@ def _assert_greater(a, b, msg=None):
 
 
 try:
-    from nose.tools import assert_less
+    from nose2.tools import assert_less
 except ImportError:
     assert_less = _assert_less
 
 try:
-    from nose.tools import assert_greater
+    from nose2.tools import assert_greater
 except ImportError:
     assert_greater = _assert_greater
 

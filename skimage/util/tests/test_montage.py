@@ -1,7 +1,5 @@
-from nose.tools import assert_equal, raises
-from numpy.testing import assert_array_equal
-
 import numpy as np
+from numpy.testing import assert_array_equal, assert_equal, assert_raises
 from skimage.util.montage import montage2d
 
 
@@ -19,7 +17,6 @@ def test_simple():
          [ 12. ,  13. ,  14. ,   8.5,   8.5,   8.5],
          [ 15. ,  16. ,  17. ,   8.5,   8.5,   8.5]]
     )
-
     assert_array_equal(arr_out, gt)
 
 
@@ -37,7 +34,6 @@ def test_fill():
          [ 12. ,  13. ,  14. ,   0. ,   0. ,   0. ],
          [ 15. ,  16. ,  17. ,   0. ,   0. ,   0. ]]
     )
-
     assert_array_equal(arr_out, gt)
 
 
@@ -86,16 +82,14 @@ def test_rescale_intensity():
          [ 0.375,  0.5  ,  0.625,  0.375,  0.5  ,  0.625],
          [ 0.75 ,  0.875,  1.   ,  0.75 ,  0.875,  1.   ]]
         )
-
     assert_equal(arr_out.min(), 0.0)
     assert_equal(arr_out.max(), 1.0)
     assert_array_equal(arr_out, gt)
 
 
-@raises(AssertionError)
 def test_error_ndim():
     arr_error = np.random.randn(1, 2, 3, 4)
-    montage2d(arr_error)
+    assert_raises(AssertionError, montage2d, arr_error)
 
 
 if __name__ == '__main__':
