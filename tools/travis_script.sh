@@ -17,21 +17,27 @@ if [[ $TRAVIS_OS_NAME == "osx" ]]; then
     echo 'backend : Template' > $MPL_DIR/matplotlibrc
 fi
 
+# --------------------------------- section -----------------------------------
 section "Test.with.min.requirements"
 nose2 $TEST_ARGS
 section_end "Test.with.min.requirements"
+# -----------------------------------------------------------------------------
 
+# --------------------------------- section -----------------------------------
 section "Build.docs"
 if [[ $NO_SPHINX != 1 ]]; then
     export SPHINXCACHE=$HOME/.cache/sphinx; make html
 fi
 section_end "Build.docs"
+# -----------------------------------------------------------------------------
 
+# --------------------------------- section -----------------------------------
 section "Flake8.test"
 flake8 --exit-zero --exclude=test_*,six.py skimage doc/examples viewer_examples
 section_end "Flake8.test"
+# -----------------------------------------------------------------------------
 
-
+# --------------------------------- section -----------------------------------
 section "Install.optional.dependencies"
 
 # Install most of the optional packages
@@ -46,7 +52,8 @@ if [[ $WITH_QT == 1 ]]; then
 
     VAR=( $(which -a python$PY) )
 
-    GET_PYTHON_LIB_CMD="from distutils.sysconfig import get_python_lib; print (get_python_lib())"
+    GET_PYTHON_LIB_CMD="from distutils.sysconfig import get_python_lib; "
+                       "print (get_python_lib())"
     LIB_VIRTUALENV_PATH=$(python -c "$GET_PYTHON_LIB_CMD")
     LIB_SYSTEM_PATH=$(${VAR[-1]} -c "$GET_PYTHON_LIB_CMD")
 
@@ -67,11 +74,12 @@ fi
 pip list
 
 section_end "Install.optional.dependencies"
+# -----------------------------------------------------------------------------
 
-
+# --------------------------------- section -----------------------------------
 section "Run.doc.examples"
-echo 'backend : Template' > $MPL_DIR/matplotlibrc
 
+echo 'backend : Template' > $MPL_DIR/matplotlibrc
 
 for f in doc/examples/*/*.py; do
     python "$f"
@@ -81,8 +89,9 @@ for f in doc/examples/*/*.py; do
 done
 
 section_end "Run.doc.examples"
+# -----------------------------------------------------------------------------
 
-
+# --------------------------------- section -----------------------------------
 section "Run.doc.applications"
 
 for f in doc/examples/xx_applications/*.py; do
@@ -100,14 +109,16 @@ elif [[ $WITH_PYSIDE == 1 ]]; then
     MPL_QT_API=PySide
     export QT_API=pyside
 fi
+
 if [[ $WITH_QT == 1 || $WITH_PYSIDE == 1 ]]; then
     echo 'backend: Qt4Agg' > $MPL_DIR/matplotlibrc
     echo 'backend.qt4 : '$MPL_QT_API >> $MPL_DIR/matplotlibrc
 fi
 
 section_end "Run.doc.applications"
+# -----------------------------------------------------------------------------
 
-
+# --------------------------------- section -----------------------------------
 section "Test.with.optional.dependencies"
 
 # run tests again with optional dependencies to get more coverage
@@ -121,3 +132,4 @@ section_end "Test.with.optional.dependencies"
 section "Prepare.release"
 doc/release/contribs.py HEAD~10
 section_end "Prepare.release"
+# -----------------------------------------------------------------------------
