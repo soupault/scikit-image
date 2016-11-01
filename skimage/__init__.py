@@ -68,40 +68,37 @@ data_dir = os.path.join(pkg_dir, 'data')
 __version__ = '0.13dev'
 
 
-def _test(*args, **kwargs):
-    # XXX: review this file
-    pass
+# XXX: review this file
 
-# try:
-#     imp.find_module('nose2')
-# except ImportError:
-#     def _test(doctest=False, verbose=False):
-#         """This would run all unit tests, but nose couldn't be
-#         imported so the test suite can not run.
-#         """
-#         raise ImportError("Could not load nose2. Unit tests are not available.")
-# else:
-#     def _test(doctest=False, verbose=False):
-#         """Run all unit tests."""
-#         import nose2
-#         import warnings
-#         args = ['', pkg_dir, '--exe', '--ignore-files=^_test']
-#         if verbose:
-#             args.extend(['-v', '-s'])
-#         if doctest:
-#             args.extend(['--with-doctest', '--ignore-files=^\.',
-#                          '--ignore-files=^setup\.py$$', '--ignore-files=test'])
-#             # Make sure warnings do not break the doc tests
-#             with warnings.catch_warnings():
-#                 warnings.simplefilter("ignore")
-#                 success = nose2.run('skimage', argv=args)
-#         else:
-#             success = nose2.run('skimage', argv=args)
-#         # Return sys.exit code
-#         if success:
-#             return 0
-#         else:
-#             return 1
+try:
+    imp.find_module('nose2')
+except ImportError:
+    def _test(doctest=False, verbose=False):
+        """This would run all unit tests, but nose couldn't be
+        imported so the test suite can not run.
+        """
+        raise ImportError("Could not load nose2. Unit tests are not available.")
+else:
+    def _test(doctest=False, verbose=False):
+        """Run all unit tests."""
+        import nose2
+        import warnings
+        args = ['', pkg_dir]
+        if verbose:
+            args.extend(['--verbose', '-s'])
+        if doctest:
+            args.extend(['--with-doctest'])
+            # Make sure warnings do not break the doc tests
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                success = nose2.run('skimage', argv=args)
+        else:
+            success = nose2.run('skimage', argv=args)
+        # Return sys.exit code
+        if success:
+            return 0
+        else:
+            return 1
 
 
 # do not use `test` as function name as this leads to a recursion problem with
