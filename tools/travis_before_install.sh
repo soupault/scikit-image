@@ -13,7 +13,7 @@ fi
 
 export DISPLAY=:99.0
 export PYTHONWARNINGS="d,all:::skimage"
-export TEST_ARGS="--config nose2_config.cfg --verbose"
+export TEST_ARGS="--config tools/nose2_config.cfg --verbose"
 WHEELBINARIES="matplotlib scipy pillow cython"
 
 retry () {
@@ -48,7 +48,7 @@ source ~/venv/bin/activate
 pip install --upgrade pip
 pip install --retries 3 -q wheel flake8 codecov nose2
 # install numpy from PyPI instead of our wheelhouse
-pip install --retries 3 -q wheel numpy
+pip install --retries 3 -q numpy
 
 # install wheels
 for requirement in $WHEELBINARIES; do
