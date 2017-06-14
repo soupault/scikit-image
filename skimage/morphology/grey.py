@@ -397,7 +397,7 @@ def white_tophat(image, selem=None, out=None):
     selem = np.array(selem)
     if out is image:
         opened = opening(image, selem)
-        out -= opened
+        out = np.bitwise_xor(out, opened)
         return out
     elif out is None:
         out = np.empty_like(image)
@@ -453,5 +453,5 @@ def black_tophat(image, selem=None, out=None):
     else:
         original = image
     out = closing(image, selem, out=out)
-    out -= original
+    out = np.bitwise_xor(out, original)
     return out
