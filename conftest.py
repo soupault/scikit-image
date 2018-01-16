@@ -1,5 +1,7 @@
-# List of files that pytest should ignore
+import numpy
+numpy.set_printoptions(legacy='1.13')
 
+# List of files that pytest should ignore
 collect_ignore = ["setup.py",
                   "skimage/io/_plugins",
                   "doc/",
