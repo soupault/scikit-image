@@ -1,5 +1,7 @@
-import numpy
-numpy.set_printoptions(legacy='1.13')
+import numpy as np
+
+if np.version.full_version >= '1.14.0':
+    np.set_printoptions(legacy='1.13')
 
 # List of files that pytest should ignore
 collect_ignore = ["setup.py",
