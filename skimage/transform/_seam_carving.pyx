@@ -8,6 +8,7 @@ cimport numpy as cnp
 
 cdef cnp.double_t DBL_MAX = np.finfo(np.double).max
 
+
 cdef void _preprocess_image(cnp.double_t[:, :, ::1] energy_img,
                             cnp.double_t[:, ::1] cumulative_img,
                             cnp.int8_t[:, ::1] track_img,
@@ -57,6 +58,7 @@ cdef void _preprocess_image(cnp.double_t[:, :, ::1] energy_img,
                     track_img[r, c] = offset
 
             cumulative_img[r, c] = min_cost + energy_img[r, c, 0]
+
 
 cdef bint _mark_seam(cnp.int8_t[:, ::1] track_img,
                      Py_ssize_t start_index,
@@ -109,13 +111,14 @@ cdef bint _mark_seam(cnp.int8_t[:, ::1] track_img,
 
     return 1
 
+
 cdef void _remove_seam(cnp.double_t[:, :, ::1] img,
                        cnp.uint8_t[:, ::1] seam_map, Py_ssize_t cols) nogil:
     """ Remove marked seams from an image.
 
     Parameters
     ----------
-    img : (M, N, P) ndarray
+    img : (M, N, C) ndarray
         Input image whose vertical seams are to be removed.
     seam_map : (M, N) ndarray
         Array with seams to be removed marked by non-zero entries.

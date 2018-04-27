@@ -7,7 +7,7 @@ def clear_border(labels, buffer_size=0, bgval=0, in_place=False):
 
     Parameters
     ----------
-    labels : (M[, N[, ..., P]]) array of int or bool
+    labels : ([P, ..., ]M[, N]) array of int or bool
         Imaging data labels.
     buffer_size : int, optional
         The width of the border examined.  By default, only objects
@@ -19,7 +19,7 @@ def clear_border(labels, buffer_size=0, bgval=0, in_place=False):
 
     Returns
     -------
-    out : (M[, N[, ..., P]]) array
+    out : ([P, ..., ]M[, N]) array
         Imaging data labels with cleared borders
 
     Examples
@@ -43,15 +43,15 @@ def clear_border(labels, buffer_size=0, bgval=0, in_place=False):
     """
     image = labels
 
-    if any( ( buffer_size >= s for s in image.shape)):
+    if any((buffer_size >= s for s in image.shape)):
         raise ValueError("buffer size may not be greater than image size")
 
     # create borders with buffer_size
     borders = np.zeros_like(image, dtype=np.bool_)
     ext = buffer_size + 1
     slstart = slice(ext)
-    slend   = slice(-ext, None)
-    slices  = [slice(s) for s in image.shape]
+    slend = slice(-ext, None)
+    slices = [slice(s) for s in image.shape]
     for d in range(image.ndim):
         slicedim = list(slices)
         slicedim[d] = slstart

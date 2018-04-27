@@ -4,7 +4,7 @@ import numpy as np
 from math import ceil
 from .. import img_as_float
 from ..restoration._denoise_cy import _denoise_bilateral, _denoise_tv_bregman
-from .._shared.utils import skimage_deprecation, warn
+from .._shared.utils import warn
 import pywt
 import skimage.color as color
 import numbers
@@ -498,7 +498,7 @@ def denoise_wavelet(image, sigma=None, wavelet='db1', mode='soft',
 
     Parameters
     ----------
-    image : ndarray ([M[, N[, ...P]][, C]) of ints, uints or floats
+    image : ndarray ([P, ..., ]M[, N][, C]) of ints, uints or floats
         Input data to be denoised. `image` can be of any numeric type,
         but it is cast into an ndarray of floats for the computation
         of the denoised image.

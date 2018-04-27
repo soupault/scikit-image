@@ -26,7 +26,7 @@ def marching_cubes_lewiner(volume, level=None, spacing=(1., 1., 1.),
 
     Parameters
     ----------
-    volume : (M, N, P) array
+    volume : (P, M, N) array
         Input data volume to find isosurfaces. Will internally be
         converted to float32 if necessary.
     level : float
@@ -34,7 +34,7 @@ def marching_cubes_lewiner(volume, level=None, spacing=(1., 1., 1.),
         given or None, the average of the min and max of vol is used.
     spacing : length-3 tuple of floats
         Voxel spacing in spatial dimensions corresponding to numpy array
-        indexing dimensions (M, N, P) as in `volume`.
+        indexing dimensions (P, M, N) as in `volume`.
     gradient_direction : string
         Controls if the mesh was generated from an isosurface with gradient
         descent toward objects of interest (the default), or the opposite,
@@ -62,7 +62,7 @@ def marching_cubes_lewiner(volume, level=None, spacing=(1., 1., 1.),
     -------
     verts : (V, 3) array
         Spatial coordinates for V unique mesh vertices. Coordinate order
-        matches input `volume` (M, N, P).
+        matches input `volume` (P, M, N).
     faces : (F, 3) array
         Define triangular faces via referencing vertex indices from ``verts``.
         This algorithm specifically outputs triangles, so each face has

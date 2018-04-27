@@ -621,7 +621,7 @@ def threshold_mean(image):
 
     Parameters
     ----------
-    image : (N, M[, ..., P]) ndarray
+    image : ([P, ..., ]N, M) ndarray
         Grayscale input image.
 
     Returns
@@ -652,7 +652,7 @@ def threshold_triangle(image, nbins=256):
 
     Parameters
     ----------
-    image : (N, M[, ..., P]) ndarray
+    image : ([P, ..., ]N, M) ndarray
         Grayscale input image.
     nbins : int, optional
         Number of bins used to calculate histogram. This value is ignored for
@@ -688,7 +688,7 @@ def threshold_triangle(image, nbins=256):
     # Find peak, lowest and highest gray levels.
     arg_peak_height = np.argmax(hist)
     peak_height = hist[arg_peak_height]
-    arg_low_level, arg_high_level = np.where(hist>0)[0][[0, -1]]
+    arg_low_level, arg_high_level = np.where(hist > 0)[0][[0, -1]]
 
     # Flip is True if left tail is shorter.
     flip = arg_peak_height - arg_low_level < arg_high_level - arg_peak_height
@@ -892,7 +892,7 @@ def apply_hysteresis_threshold(image, low, high):
 
     Parameters
     ----------
-    image : array, shape (M,[ N, ..., P])
+    image : array, shape ([P, ..., ]M[, N])
         Grayscale input image.
     low : float, or array of same shape as `image`
         Lower threshold.

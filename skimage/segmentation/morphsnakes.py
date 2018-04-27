@@ -192,7 +192,7 @@ def inverse_gaussian_gradient(image, alpha=100.0, sigma=5.0):
 
     Parameters
     ----------
-    image : (M, N) or (L, M, N) array
+    image : ([P, ]M, N) array
         Grayscale image or volume.
     alpha : float, optional
         Controls the steepness of the inversion. A larger value will make the
@@ -203,7 +203,7 @@ def inverse_gaussian_gradient(image, alpha=100.0, sigma=5.0):
 
     Returns
     -------
-    gimage : (M, N) or (L, M, N) array
+    gimage : ([P, ]M, N) array
         Preprocessed image (or volume) suitable for
         `morphological_geodesic_active_contour`.
     """
@@ -224,11 +224,11 @@ def morphological_chan_vese(image, iterations, init_level_set='checkerboard',
 
     Parameters
     ----------
-    image : (M, N) or (L, M, N) array
+    image : ([P, ]M, N) array
         Grayscale image or volume to be segmented.
     iterations : uint
         Number of iterations to run
-    init_level_set : str, (M, N) array, or (L, M, N) array
+    init_level_set : str, (M, N) array, or (P, M, N) array
         Initial level set. If an array is given, it will be binarized and used
         as the initial level set. If a string is given, it defines the method
         to generate a reasonable initial level set with the shape of the
@@ -254,7 +254,7 @@ def morphological_chan_vese(image, iterations, init_level_set='checkerboard',
 
     Returns
     -------
-    out : (M, N) or (L, M, N) array
+    out : ([P, ]M, N) array
         Final segmentation (i.e., the final level set)
 
     See also
@@ -327,7 +327,7 @@ def morphological_geodesic_active_contour(gimage, iterations,
 
     Parameters
     ----------
-    gimage : (M, N) or (L, M, N) array
+    gimage : ([P, ]M, N) array
         Preprocessed image or volume to be segmented. This is very rarely the
         original image. Instead, this is usually a preprocessed version of the
         original image that enhances and highlights the borders (or other
@@ -340,7 +340,7 @@ def morphological_geodesic_active_contour(gimage, iterations,
         preprocessing.
     iterations : uint
         Number of iterations to run.
-    init_level_set : str, (M, N) array, or (L, M, N) array
+    init_level_set : str, (M, N) array, or (P, M, N) array
         Initial level set. If an array is given, it will be binarized and used
         as the initial level set. If a string is given, it defines the method
         to generate a reasonable initial level set with the shape of the
@@ -368,7 +368,7 @@ def morphological_geodesic_active_contour(gimage, iterations,
 
     Returns
     -------
-    out : (M, N) or (L, M, N) array
+    out : ([P, ]M, N) array
         Final segmentation (i.e., the final level set)
 
     See also
