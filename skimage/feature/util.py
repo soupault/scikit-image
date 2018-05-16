@@ -49,9 +49,9 @@ def plot_matches(ax, image1, image2, keypoints1, keypoints2, matches,
     ----------
     ax : matplotlib.axes.Axes
         Matches and image are drawn in this ax.
-    image1 : (N, M [, 3]) array
+    image1 : (M, N [, 3]) array
         First grayscale or color image.
-    image2 : (N, M [, 3]) array
+    image2 : (M, N [, 3]) array
         Second grayscale or color image.
     keypoints1 : (K1, 2) array
         First keypoint coordinates as ``(row, col)``.
@@ -150,14 +150,14 @@ def _mask_border_keypoints(image_shape, keypoints, distance):
     ----------
     image_shape : (2, ) array_like
         Shape of the image as ``(rows, cols)``.
-    keypoints : (N, 2) array
+    keypoints : (K, 2) array
         Keypoint coordinates as ``(rows, cols)``.
     distance : int
         Image border distance.
 
     Returns
     -------
-    mask : (N, ) bool array
+    mask : (K, ) bool array
         Mask indicating if pixels are within the image (``True``) or in the
         border region of the image (``False``).
 

@@ -31,8 +31,8 @@ def montage(arr_in, fill='mean', rescale_intensity=False, grid_shape=None,
 
     Parameters
     ----------
-    arr_in : (P, M, N[, C]) ndarray
-        An array representing an ensemble of `P` images of equal shape.
+    arr_in : (K, M, N[, C]) ndarray
+        An array representing an ensemble of `K` images of equal shape.
     fill : float or array-like of floats or 'mean', optional
         Value to fill the padding areas and/or the extra tiles in
         the output array. Has to be `float` for single channel collections.
@@ -53,7 +53,7 @@ def montage(arr_in, fill='mean', rescale_intensity=False, grid_shape=None,
 
     Returns
     -------
-    arr_out : (P*(M+p)+p, P*(N+p)+p[, C]) ndarray
+    arr_out : (K*(M+p)+p, K*(N+p)+p[, C]) ndarray
         Output array with input images glued together (including padding `p`).
 
     Examples

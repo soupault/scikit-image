@@ -20,9 +20,9 @@ def active_contour(image, snake, alpha=0.01, beta=0.1,
 
     Parameters
     ----------
-    image : (N, M) or (N, M, 3) ndarray
+    image : (M, N) or (M, N, 3) ndarray
         Input image.
-    snake : (N, 2) ndarray
+    snake : (K, 2) ndarray
         Initialisation coordinates of snake. For periodic snakes, it should
         not include duplicate endpoints.
     alpha : float, optional

@@ -16,12 +16,12 @@ def hough_line_peaks(hspace, angles, dists, min_distance=9, min_angle=10,
 
     Parameters
     ----------
-    hspace : (N, M) array
+    hspace : (M, N) array
         Hough space returned by the `hough_line` function.
-    angles : (M,) array
+    angles : (K, ) array
         Angles returned by the `hough_line` function. Assumed to be continuous.
         (`angles[-1] - angles[0] == PI`).
-    dists : (N, ) array
+    dists : (L, ) array
         Distances returned by the `hough_line` function.
     min_distance : int, optional
         Minimum distance separating lines (maximum filter size for first
@@ -278,9 +278,9 @@ def hough_circle_peaks(hspaces, radii, min_xdistance=1, min_ydistance=1,
 
     Parameters
     ----------
-    hspaces : (N, M) array
+    hspaces : (M, N) array
         Hough spaces returned by the `hough_circle` function.
-    radii : (M,) array
+    radii : (K, ) array
         Radii corresponding to Hough spaces.
     min_xdistance : int, optional
         Minimum distance separating centers in the x dimension.

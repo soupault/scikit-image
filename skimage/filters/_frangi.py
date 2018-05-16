@@ -11,7 +11,7 @@ def _frangi_hessian_common_filter(image, scale_range, scale_step,
 
     Parameters
     ----------
-    image : (N, M) ndarray
+    image : (M, N) ndarray
         Array with input image data.
     scale_range : 2-tuple of floats, optional
         The range of sigmas used.
@@ -82,7 +82,7 @@ def frangi(image, scale_range=(1, 10), scale_step=2, beta1=0.5, beta2=15,
 
     Parameters
     ----------
-    image : (N, M) ndarray
+    image : (M, N) ndarray
         Array with input image data.
     scale_range : 2-tuple of floats, optional
         The range of sigmas used.
@@ -100,7 +100,7 @@ def frangi(image, scale_range=(1, 10), scale_step=2, beta1=0.5, beta2=15,
 
     Returns
     -------
-    out : (N, M) ndarray
+    out : (M, N) ndarray
         Filtered image (maximum of pixels across all scales).
 
     Notes
@@ -141,7 +141,7 @@ def hessian(image, scale_range=(1, 10), scale_step=2, beta1=0.5, beta2=15):
 
     Parameters
     ----------
-    image : (N, M) ndarray
+    image : (M, N) ndarray
         Array with input image data.
     scale_range : 2-tuple of floats, optional
         The range of sigmas used.
@@ -156,7 +156,7 @@ def hessian(image, scale_range=(1, 10), scale_step=2, beta1=0.5, beta2=15):
 
     Returns
     -------
-    out : (N, M) ndarray
+    out : (M, N) ndarray
         Filtered image (maximum of pixels across all scales).
 
     Notes

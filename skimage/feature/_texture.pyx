@@ -100,7 +100,7 @@ def _local_binary_pattern(double[:, ::1] image,
 
     Parameters
     ----------
-    image : (N, M) double array
+    image : (M, N) double array
         Graylevel image.
     P : int
         Number of circularly symmetric neighbour set points (quantization of
@@ -118,7 +118,7 @@ def _local_binary_pattern(double[:, ::1] image,
 
     Returns
     -------
-    output : (N, M) array
+    output : (M, N) array
         LBP image.
     """
 
@@ -295,7 +295,7 @@ def _multiblock_lbp(float[:, ::1] int_image,
 
     Parameters
     ----------
-    int_image : (N, M) float array
+    int_image : (M, N) float array
         Integral image.
     r : int
         Row-coordinate of top left corner of a rectangle containing feature.

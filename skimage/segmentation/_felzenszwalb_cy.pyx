@@ -26,7 +26,7 @@ def _felzenszwalb_cython(image, double scale=1, sigma=0.8,
 
     Parameters
     ----------
-    image : (N, M, C) ndarray
+    image : (M, N, C) ndarray
         Input image.
     scale : float, optional (default 1)
         Sets the obervation level. Higher means larger clusters.
@@ -38,7 +38,7 @@ def _felzenszwalb_cython(image, double scale=1, sigma=0.8,
 
     Returns
     -------
-    segment_mask : (N, M) ndarray
+    segment_mask : (M, N) ndarray
         Integer mask indicating segment labels.
     """
 

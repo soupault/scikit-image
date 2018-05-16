@@ -46,7 +46,7 @@ def manual_polygon_segmentation(image, alpha=0.4, return_all=False):
 
     Returns
     -------
-    labels : array of int, shape ([P, ]M, N)
+    labels : array of int, shape ([K, ]M, N)
         The segmented regions. If mode is `'separate'`, the leading dimension
         of the array corresponds to the number of regions that the user drew.
 
@@ -157,7 +157,7 @@ def manual_lasso_segmentation(image, alpha=0.4, return_all=False):
 
     Returns
     -------
-    labels : array of int, shape ([P, ]M, N)
+    labels : array of int, shape ([K, ]M, N)
         The segmented regions. If mode is `'separate'`, the leading dimension
         of the array corresponds to the number of regions that the user drew.
 

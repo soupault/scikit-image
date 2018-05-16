@@ -1,7 +1,6 @@
 # coding: utf-8
 from __future__ import division
 from math import sqrt, atan2, pi as PI
-import itertools
 from warnings import warn
 import numpy as np
 from scipy import ndimage as ndi
@@ -363,9 +362,9 @@ def regionprops(label_image, intensity_image=None, cache=True,
 
     Parameters
     ----------
-    label_image : (N, M) ndarray
+    label_image : (M, N) ndarray
         Labeled input image. Labels with value 0 are ignored.
-    intensity_image : (N, M) ndarray, optional
+    intensity_image : (M, N) ndarray, optional
         Intensity (i.e., input) image with same size as labeled image.
         Default is None.
     cache : bool, optional
@@ -400,7 +399,7 @@ def regionprops(label_image, intensity_image=None, cache=True,
         Number of pixels of convex hull image.
     **convex_image** : (H, J) ndarray
         Binary convex hull image which has the same size as bounding box.
-    **coords** : (N, 2) ndarray
+    **coords** : (K, 2) ndarray
         Coordinate list ``(row, col)`` of the region.
     **eccentricity** : float
         Eccentricity of the ellipse that has the same second-moments as the
